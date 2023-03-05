@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/user")
 public class UserController {
@@ -38,5 +40,11 @@ public class UserController {
     public ResponseEntity deleteUser(@PathVariable ("userId") Long userId){
         userService.deleteUser(userId);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping
+    public ResponseEntity<List<UserDTO>> getAllUsers(){
+        List<UserDTO> userDTOList = userService.getAllUsers();
+        return new ResponseEntity<>(userDTOList, HttpStatus.OK);
     }
 }
