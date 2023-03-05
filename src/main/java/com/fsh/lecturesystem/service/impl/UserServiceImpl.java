@@ -8,6 +8,8 @@ import com.fsh.lecturesystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -33,6 +35,18 @@ public class UserServiceImpl implements UserService {
             userDTO = userConverter.convertEntityToDTO(userEntity.get());
         }
         return userDTO;
+    }
+
+    @Override
+    public List<UserDTO> getAllUsers() {
+        List<UserEntity> entityList = (List<UserEntity>) userRepository.findAll();
+        List<UserDTO> userDTOList = new ArrayList<>();
+        for(UserEntity userEntity : entityList){
+            UserDTO userDTO = userConverter.convertEntityToDTO(userEntity);
+            userDTOList.add(userDTO);
+        }
+
+        return userDTOList;
     }
 
     @Override
