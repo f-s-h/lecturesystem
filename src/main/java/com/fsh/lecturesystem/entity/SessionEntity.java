@@ -12,9 +12,9 @@ import lombok.Setter;
 public class SessionEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "group_generator")
-    @SequenceGenerator(name = "group_generator", sequenceName = "group_seq", allocationSize = 1)
-    private Long sessionId;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "session_generator")
+    @SequenceGenerator(name = "session_generator", sequenceName = "session_seq", allocationSize = 1)
+    private Long userId;
     private String session;
 
     public SessionEntity(String session) {

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface SessionService {
     public SessionDTO saveSession(SessionDTO sessionDTO);
-    public SessionDTO getSession(Long sessionId);
+    public SessionDTO getSession(Long userId);
     public List<SessionDTO> getAllSessions();
-    public void deleteSession(Long sessionId);
+    public void deleteSession(Long userId);
 }

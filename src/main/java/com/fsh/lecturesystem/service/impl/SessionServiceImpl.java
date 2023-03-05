@@ -28,8 +28,8 @@ public class SessionServiceImpl implements SessionService {
     }
 
     @Override
-    public SessionDTO getSession(Long sessionId) {
-        Optional<SessionEntity> sessionEntity = sessionRepository.findById(sessionId);
+    public SessionDTO getSession(Long userId) {
+        Optional<SessionEntity> sessionEntity = sessionRepository.findById(userId);
         SessionDTO sessionDTO = null;
         if (sessionEntity.isPresent()){
             sessionDTO = sessionConverter.convertEntityToDTO(sessionEntity.get());
@@ -50,7 +50,7 @@ public class SessionServiceImpl implements SessionService {
     }
 
     @Override
-    public void deleteSession(Long sessionId) {
-        sessionRepository.deleteById(sessionId);
+    public void deleteSession(Long userId) {
+        sessionRepository.deleteById(userId);
     }
 }

@@ -11,6 +11,6 @@ public class SessionConverter {
     }
 
     public SessionDTO convertEntityToDTO(SessionEntity sessionEntity){
-        return new SessionDTO(sessionEntity.getSessionId(), sessionEntity.getSession());
+        return new SessionDTO(sessionEntity.getUserId(), sessionEntity.getSession());
     }
 }

@@ -6,11 +6,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SessionDTO {
-    private Long sessionId;
+    private Long userId;
     private String session;
 
-    public SessionDTO(Long sessionId, String session) {
-        this.sessionId = sessionId;
+    public SessionDTO(Long userId, String session) {
+        this.userId = userId;
         this.session = session;
     }
 
