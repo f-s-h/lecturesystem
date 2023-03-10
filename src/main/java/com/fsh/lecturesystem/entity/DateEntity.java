@@ -8,7 +8,7 @@ import lombok.Setter;
 import java.util.Date;
 
 @Entity
-@Table(name="COURSES")
+@Table(name="DATES")
 @NoArgsConstructor
 @Getter
 @Setter

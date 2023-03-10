@@ -542,3 +542,27 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: /mnt/nvme0n1p1/0
 	at org.h2.mvstore.FileStore.open(FileStore.java:128)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:452)
 	... 129 more
+2023-03-10 13:21:59 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "select * from [*]group"; expected "identifier"; SQL statement:
+select * from group [42001-214]
+2023-03-10 13:22:50 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "select * from [*]group"; expected "identifier"; SQL statement:
+select * from group [42001-214]
+2023-03-10 13:28:40 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PASSWORD" not found; SQL statement:
+select * from password [42102-214]
+2023-03-10 13:37:38 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "alter table courses\000d\000a[*]delete column date_id, date, location_id"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+alter table courses
+delete column date_id, date, location_id [42001-214]
+2023-03-10 13:37:39 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "alter table courses\000d\000a[*]delete column date_id, date, location_id"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+alter table courses
+delete column date_id, date, location_id [42001-214]
+2023-03-10 13:37:43 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "alter table courses\000d\000a[*]delete column date_id"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+alter table courses
+delete column date_id [42001-214]
+2023-03-10 13:38:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "alter table courses[*]"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+alter table courses [42001-214]
