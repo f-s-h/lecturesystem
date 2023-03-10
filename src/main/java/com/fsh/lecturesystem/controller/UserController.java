@@ -47,4 +47,18 @@ public class UserController {
         List<UserDTO> userDTOList = userService.getAllUsers();
         return new ResponseEntity<>(userDTOList, HttpStatus.OK);
     }
+    @PutMapping("/{userId}")
+    public ResponseEntity<UserDTO> updateUser(@PathVariable ("userId") Long userId, @RequestBody UserDTO userDTO){
+        userDTO = userService.updateUser(userId, userDTO);
+        HttpStatus responseStatus;
+        if(userDTO == null){
+            responseStatus = HttpStatus.NOT_FOUND;
+        }
+        else{
+            responseStatus = HttpStatus.OK;
+        }
+        return new ResponseEntity<>(userDTO, responseStatus);
+    }
+
+
 }
