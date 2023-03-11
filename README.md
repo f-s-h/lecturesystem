@@ -34,6 +34,10 @@ the userId is assigned by the backend. Returns the newly saved user inclusive it
 Enrolls the user with the id 'userId' in to the course with 'courseId' as Id.
 Returns an object of the type CourseEnrolledUser: {"userId": userId, "courseId": courseId}
 
+#### [POST] /api/v1/user/{userId}/asssign-group/{groupId}
+
+Assigns the user with the id 'userId' to the group with 'groupId' as Id.
+Returns an object of the type GroupAssignedUser: {"userId": userId, "groupId": groupId}
 
 #### [PUT] /api/v1/user/{userId}
 
