@@ -7,7 +7,7 @@ import lombok.Setter;
 import lombok.extern.slf4j.XSlf4j;
 
 @Entity
-@Table(name="GRADES")
+@Table(name="GRADE")
 @NoArgsConstructor
 @Getter
 @Setter

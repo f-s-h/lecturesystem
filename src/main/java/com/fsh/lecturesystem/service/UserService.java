@@ -10,4 +10,5 @@ public interface UserService {
     public UserDTO getUser(Long userId);
     public void deleteUser(Long userId);
     public List<UserDTO> getAllUsers();
+    public UserDTO updateUser(Long userId, UserDTO userDTO);
 }

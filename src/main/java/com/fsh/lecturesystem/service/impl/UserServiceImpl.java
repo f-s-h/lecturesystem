@@ -50,6 +50,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserDTO updateUser(Long userId, UserDTO userUpdateDTO) {
+        Optional<UserEntity> optUserEntity = userRepository.findById(userId);
+        UserDTO userDTO = null;
+        if(optUserEntity.isPresent()) {
+            UserEntity userEntity = optUserEntity.get();
+
+            if(userUpdateDTO.getAddress() != null) userEntity.setAddress(userUpdateDTO.getAddress());
+            if(userUpdateDTO.getEmail() != null) userEntity.setEmail(userUpdateDTO.getEmail());
+            if(userUpdateDTO.getFirstName() != null) userEntity.setFirstName(userUpdateDTO.getFirstName());
+            if(userUpdateDTO.getLastName() != null) userEntity.setLastName(userUpdateDTO.getLastName());
+
+            userRepository.save(userEntity);
+            userDTO = userConverter.convertEntityToDTO(userEntity);
+
+        }
+        return userDTO;
+    }
+
+    @Override
     public void deleteUser(Long userId) {
         userRepository.deleteById(userId);
     }
