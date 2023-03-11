@@ -1,6 +1,8 @@
 package com.fsh.lecturesystem.controller;
 
+import com.fsh.lecturesystem.dto.CourseEnrolledUserDTO;
 import com.fsh.lecturesystem.dto.UserDTO;
+import com.fsh.lecturesystem.entity.CourseEnrolledUserEntity;
 import com.fsh.lecturesystem.service.UserService;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,9 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    CourseEnrolledUserController courseEnrolledUserController;
 
     @PostMapping
     public ResponseEntity<UserDTO> saveUser(@RequestBody UserDTO userDTO){
@@ -59,6 +64,17 @@ public class UserController {
         }
         return new ResponseEntity<>(userDTO, responseStatus);
     }
+
+    @PostMapping("/{userId}/enroll-course/{courseId}")
+    public ResponseEntity<CourseEnrolledUserDTO> enrollUserInCourse(@PathVariable ("userId") Long userId, @PathVariable ("courseId") Long courseId){
+        return courseEnrolledUserController.saveCourseEnrolledUser(new CourseEnrolledUserDTO(userId, courseId));
+    }
+
+    /**
+     * TODO:
+     * Delete all courseEnrolledUsers by userId
+     * Get all courseEnrolledUsers by userId
+     */
 
 
 }
