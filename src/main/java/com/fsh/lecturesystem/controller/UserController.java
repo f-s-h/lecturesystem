@@ -1,6 +1,7 @@
 package com.fsh.lecturesystem.controller;
 
 import com.fsh.lecturesystem.dto.CourseEnrolledUserDTO;
+import com.fsh.lecturesystem.dto.GroupAssignedUserDTO;
 import com.fsh.lecturesystem.dto.UserDTO;
 import com.fsh.lecturesystem.entity.CourseEnrolledUserEntity;
 import com.fsh.lecturesystem.service.UserService;
@@ -21,6 +22,8 @@ public class UserController {
 
     @Autowired
     CourseEnrolledUserController courseEnrolledUserController;
+    @Autowired
+    GroupAssignedUserController groupAssignedUserController;
 
     @PostMapping
     public ResponseEntity<UserDTO> saveUser(@RequestBody UserDTO userDTO){
@@ -76,5 +79,14 @@ public class UserController {
      * Get all courseEnrolledUsers by userId
      */
 
+    @PostMapping("/{userId}/assign-group/{groupId}")
+    public ResponseEntity<GroupAssignedUserDTO> assignUserToGroup(@PathVariable ("userId") Long userId, @PathVariable ("groupId") Long groupId){
+        return groupAssignedUserController.saveGroupAssignedUser(new GroupAssignedUserDTO(userId, groupId));
+    }
 
+    /**
+     * TODO:
+     * Delete all groupAssignedUsers by userId
+     * Get all groupAssignedUsers by userId
+     */
 }
