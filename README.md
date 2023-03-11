@@ -29,6 +29,12 @@ Saves an user. The requires attributes are:
 
 the userId is assigned by the backend. Returns the newly saved user inclusive its userId.
 
+#### [POST] /api/v1/user/{userId}/enroll-course/{courseId}
+
+Enrolls the user with the id 'userId' in to the course with 'courseId' as Id.
+Returns an object of the type CourseEnrolledUser: {"userId": userId, "courseId": courseId}
+
+
 #### [PUT] /api/v1/user/{userId}
 
 Updates the user with 'userId' as Id.
