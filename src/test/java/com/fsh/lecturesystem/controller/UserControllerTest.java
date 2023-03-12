@@ -8,7 +8,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.event.annotation.BeforeTestClass;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -24,6 +29,7 @@ public class UserControllerTest {
     UserDTO user2 = new UserDTO("Spring", "", "imaginary-street 1, miami, united states of america", "imaginary@email.com");
     UserDTO user3 = new UserDTO("admin", "admin", "", "admin@admin.com");
     UserDTO user4 = new UserDTO("admin", "admin", "admin", "");
+    List<UserDTO> userDTOList = new ArrayList<>();
 
     @BeforeAll
     public void init(){
@@ -31,14 +37,31 @@ public class UserControllerTest {
         user2 = userController.saveUser(user2).getBody();
         user3 = userController.saveUser(user3).getBody();
         user4 = userController.saveUser(user4).getBody();
+        userDTOList.add(user1);
+        userDTOList.add(user2);
+        userDTOList.add(user3);
+        userDTOList.add(user4);
     }
 
     @Test
-    public void getUser(){
-        UserDTO should = user1;
-        UserDTO observed = userController.getUser(user1.getUserId()).getBody();
-        assertEquals(should, observed);
+    public void getUserDefault(){
+        UserDTO shouldUserDTO = user1;
+        HttpStatus shouldHttpStatus = HttpStatus.OK;
+        ResponseEntity<UserDTO> observed = userController.getUser(user1.getUserId());
+        assertEquals(shouldHttpStatus, observed.getStatusCode());
+        assertEquals(shouldUserDTO, observed.getBody());
     }
+
+    @Test
+    public void getNonExistingUser(){
+        Long invalidId = -1L;
+        HttpStatus shouldHttpStatus = HttpStatus.NOT_FOUND;
+        ResponseEntity<UserDTO> observed = userController.getUser(invalidId);
+        assertEquals(shouldHttpStatus, observed.getStatusCode());
+        assertEquals(null, observed.getBody());
+    }
+
+
 
 
 }
