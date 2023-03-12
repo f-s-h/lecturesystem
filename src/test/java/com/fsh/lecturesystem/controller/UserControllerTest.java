@@ -61,7 +61,14 @@ public class UserControllerTest {
         assertEquals(null, observed.getBody());
     }
 
-
+    @Test
+    public void getAllUsers(){
+        List<UserDTO> shouldUserDtoList = userDTOList;
+        HttpStatus shouldHttpStatus = HttpStatus.OK;
+        ResponseEntity<List<UserDTO>> observed = userController.getAllUsers();
+        assertEquals(shouldHttpStatus, observed.getStatusCode());
+        assertEquals(shouldUserDtoList, observed.getBody());
+    }
 
 
 }
