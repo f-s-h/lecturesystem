@@ -30,7 +30,6 @@ public class UserControllerTest {
     UserDTO user3 = new UserDTO("admin", "admin", "", "admin@admin.com");
     UserDTO user4 = new UserDTO("admin", "admin", "admin", "admin");
     UserDTO user5 = new UserDTO("admin", "admin", "admin", "admin");
-    UserDTO user6 = new UserDTO("admin", "admin", "admin", "admin");
     List<UserDTO> userDTOList = new ArrayList<>();
 
     @BeforeAll
@@ -104,5 +103,25 @@ public class UserControllerTest {
         assertEquals(shouldUserDTO, observed.getBody());
     }
 
+    /* TODO, not working
+    @Test
+    public void deleteUser(){
+        UserDTO toDelete = user2;
+        List<UserDTO> shouldUserDtoList = userDTOList;
+        userDTOList.remove(toDelete.getUserId());
+        HttpStatus shouldHttpStatus = HttpStatus.NO_CONTENT;
+
+        HttpStatus observedHttpStatus = (HttpStatus) userController.deleteUser(toDelete.getUserId()).getStatusCode();
+        List<UserDTO> observedUserDtoList = userController.getAllUsers().getBody();
+
+        assertEquals(shouldHttpStatus, observedHttpStatus);
+        //Get all users and look wether it is the same list as shouldUserDtoList
+        assertEquals(shouldUserDtoList, observedUserDtoList);
+    }
+
+    @Test
+    public void deleteNonExistingUser(){
+
+    }*/
 
 }
