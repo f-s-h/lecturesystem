@@ -88,5 +88,21 @@ public class UserControllerTest {
         assertEquals(shouldUserDTO, observed.getBody());
     }
 
+    @Test
+    public void saveAlreadyStoredUser(){
+        UserDTO shouldUserDTO = user5;
+        HttpStatus shouldHttpStatus = HttpStatus.CREATED;
+        ResponseEntity<UserDTO> observed = userController.saveUser(shouldUserDTO);
+
+        //Set userId, otherwise it is null and therefore the compared objects cannot be equal
+        //Set to 6, because it is the 6th object saved, and even if the id is already set, it will create a new user
+        shouldUserDTO.setUserId(6L);
+        //Add to userDtoList
+        userDTOList.add(shouldUserDTO);
+
+        assertEquals(shouldHttpStatus, observed.getStatusCode());
+        assertEquals(shouldUserDTO, observed.getBody());
+    }
+
 
 }
