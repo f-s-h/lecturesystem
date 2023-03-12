@@ -28,7 +28,9 @@ public class UserControllerTest {
     UserDTO user1 = new UserDTO("Fabian", "Heinrich", "address 1, munich, germany", "fabian.heinrich@tum.de");
     UserDTO user2 = new UserDTO("Spring", "", "imaginary-street 1, miami, united states of america", "imaginary@email.com");
     UserDTO user3 = new UserDTO("admin", "admin", "", "admin@admin.com");
-    UserDTO user4 = new UserDTO("admin", "admin", "admin", "");
+    UserDTO user4 = new UserDTO("admin", "admin", "admin", "admin");
+    UserDTO user5 = new UserDTO("admin", "admin", "admin", "admin");
+    UserDTO user6 = new UserDTO("admin", "admin", "admin", "admin");
     List<UserDTO> userDTOList = new ArrayList<>();
 
     @BeforeAll
@@ -68,6 +70,22 @@ public class UserControllerTest {
         ResponseEntity<List<UserDTO>> observed = userController.getAllUsers();
         assertEquals(shouldHttpStatus, observed.getStatusCode());
         assertEquals(shouldUserDtoList, observed.getBody());
+    }
+
+    @Test
+    public void saveUser(){
+        UserDTO shouldUserDTO = user5;
+        HttpStatus shouldHttpStatus = HttpStatus.CREATED;
+        ResponseEntity<UserDTO> observed = userController.saveUser(shouldUserDTO);
+
+        //Set userId, otherwise it is null and therefore the compared objects cannot be equal
+        //Set to 5, because it is the 5th object saved
+        shouldUserDTO.setUserId(5L);
+        //Add to userDtoList
+        userDTOList.add(shouldUserDTO);
+
+        assertEquals(shouldHttpStatus, observed.getStatusCode());
+        assertEquals(shouldUserDTO, observed.getBody());
     }
 
 
