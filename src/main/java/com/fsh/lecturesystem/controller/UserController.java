@@ -2,8 +2,10 @@ package com.fsh.lecturesystem.controller;
 
 import com.fsh.lecturesystem.dto.CourseEnrolledUserDTO;
 import com.fsh.lecturesystem.dto.GroupAssignedUserDTO;
+import com.fsh.lecturesystem.dto.PasswordDTO;
 import com.fsh.lecturesystem.dto.UserDTO;
 import com.fsh.lecturesystem.entity.CourseEnrolledUserEntity;
+import com.fsh.lecturesystem.service.PasswordService;
 import com.fsh.lecturesystem.service.UserService;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,8 @@ public class UserController {
     CourseEnrolledUserController courseEnrolledUserController;
     @Autowired
     GroupAssignedUserController groupAssignedUserController;
+    @Autowired
+    PasswordService passwordService;
 
     @PostMapping
     public ResponseEntity<UserDTO> saveUser(@RequestBody UserDTO userDTO){
@@ -89,4 +93,5 @@ public class UserController {
      * Delete all groupAssignedUsers by userId
      * Get all groupAssignedUsers by userId
      */
+
 }

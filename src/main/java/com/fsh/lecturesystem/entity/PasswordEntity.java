@@ -12,8 +12,6 @@ import lombok.Setter;
 @Setter
 public class PasswordEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "password_generator")
-    @SequenceGenerator(name = "password_generator", sequenceName = "password_seq", allocationSize = 1)
     private Long userId;
 
     @Column(nullable = false)

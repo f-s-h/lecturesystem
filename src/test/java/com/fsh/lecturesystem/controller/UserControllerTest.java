@@ -1,6 +1,8 @@
 package com.fsh.lecturesystem.controller;
 
+import com.fsh.lecturesystem.dto.PasswordDTO;
 import com.fsh.lecturesystem.dto.UserDTO;
+import com.fsh.lecturesystem.service.PasswordService;
 import com.fsh.lecturesystem.service.UserService;
 import org.apache.catalina.User;
 import org.junit.jupiter.api.BeforeAll;
@@ -123,5 +125,19 @@ public class UserControllerTest {
     public void deleteNonExistingUser(){
 
     }*/
+
+    // Tests for registerUser()
+
+    @Test
+    public void registerUserDefault(@Autowired PasswordService passwordService){
+        PasswordDTO shouldPasswordDto = new PasswordDTO("ThisIsAPasswordHash");
+        UserDTO observedUserDto = userController.registerUser(user2, shouldPasswordDto).getBody();
+        userDTOList.add(observedUserDto);
+
+        shouldPasswordDto.setUserId(observedUserDto.getUserId());
+
+        PasswordDTO observedPasswordDto = passwordService.getPassword(observedUserDto.getUserId());
+        assertEquals(shouldPasswordDto, observedPasswordDto);
+    }
 
 }
