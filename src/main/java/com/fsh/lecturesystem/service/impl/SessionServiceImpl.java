@@ -13,9 +13,11 @@ import com.fsh.lecturesystem.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class SessionServiceImpl implements SessionService {
@@ -35,12 +37,13 @@ public class SessionServiceImpl implements SessionService {
     }
 
     @Override
-    public SessionDTO getSession(Long id) {
-        Optional<SessionEntity> sessionEntity = sessionRepository.findById(id);
+    public SessionDTO getSession(Long sessionId) {
+        Optional<SessionEntity> sessionEntity = sessionRepository.findById(sessionId);
         SessionDTO sessionDto = null;
         if(sessionEntity.isPresent()){
             sessionDto = sessionConverter.convertEntityToDTO(sessionEntity.get());
         }
+        //TODO generate random number
         return sessionDto;
     }
 
@@ -56,7 +59,7 @@ public class SessionServiceImpl implements SessionService {
     }
 
     @Override
-    public void deleteSession(Long id) {
-        sessionRepository.deleteById(id);
+    public void deleteSession(Long sessionId) {
+        sessionRepository.deleteById(sessionId);
     }
 }

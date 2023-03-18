@@ -11,6 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PasswordEntity {
+
     @Id
     private Long userId;
 
