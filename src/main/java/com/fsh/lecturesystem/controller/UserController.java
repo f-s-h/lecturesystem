@@ -94,4 +94,8 @@ public class UserController {
      * Get all groupAssignedUsers by userId
      */
 
+    /**
+     * Login: passwordDTO
+     * returns session
+     */
 }
